@@ -10,14 +10,15 @@
     <style>
         /* Navbar styling */
         nav {
-            background-color: #1e1e1e;
+            background-color: rgba(255,255,255,0.9);
             padding: 10px 20px;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+            border-bottom: 2px solid rgba(0,0,0,0.05);
         }
 
         nav ul {
@@ -35,7 +36,7 @@
 
         nav ul li a {
             text-decoration: none;
-            color: #f1c40f;
+            color: #006400; /* dark green for Christmas */
             font-weight: bold;
             padding: 5px 10px;
             transition: color 0.3s ease, background-color 0.3s ease;
@@ -43,7 +44,7 @@
 
         nav ul li a:hover {
             color: #ffffff;
-            background-color: #333333;
+            background-color: #b30000; /* festive red on hover */
             border-radius: 5px;
         }
 
@@ -51,9 +52,21 @@
         body {
             margin: 0;
             padding-top: 60px; /* Adjust to match the height of your navbar */
-            /* --- 🎨 NEW ORANGE BACKGROUND STYLES --- */
-            background-color: #FF8C00; /* Darker orange for better contrast */
-            color: #333333; /* Dark text for readability on orange */
+
+            /* --- 🎄 CHRISTMAS COLOR-CHANGING BACKGROUND --- */
+            background: linear-gradient(45deg, #ff0000 0%, #ffffff 25%, #008000 50%, #1e90ff 75%, #ff0000 100%);
+            background-size: 800% 800%;
+            animation: holidayShift 20s ease infinite;
+            color: #0b0b0b; /* dark text for readability */
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        @keyframes holidayShift {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 50% 100%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 0%; }
+            100% { background-position: 0% 50%; }
         }
 
         /* Main container and buttons styling */
@@ -62,41 +75,70 @@
             margin-top: 50px;
         }
         
-        /* Ensure the main heading is clearly visible on the orange background */
+        /* Ensure the main heading is clearly visible on the animated background */
         .container h1 {
-            color: #1e1e1e; /* Darker heading color */
+            color: #ffffff;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+            margin-bottom: 10px;
         }
 
         .buttons a {
             text-decoration: none;
             display: inline-block;
             padding: 10px 20px;
-            background-color: #333333;
-            color: #f1c40f;
-            border-radius: 5px;
+            background-color: rgba(0,100,0,0.95); /* deep green buttons */
+            color: #ffffff;
+            border-radius: 8px;
             margin: 10px;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.25s ease, transform 0.12s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            border: 2px solid #ffffff22;
         }
 
         .buttons a:hover {
-            background-color: #555555;
-            color: #ffffff;
+            background-color: #b30000; /* switch to red on hover */
+            transform: translateY(-2px);
+            color: #fff;
         }
 
-        /* ⚠️ Warning box styling */
+        /* Festive accent for the "Good" button to make it stand out (blue) */
+        .buttons a.button.good {
+            background-color: rgba(30,144,255,0.95);
+            color: #fff;
+        }
+
+        .buttons a.button.good:hover {
+            background-color: #0066cc;
+        }
+
+        /* Holiday-styled warning box */
         .warning {
             margin-top: 30px;
             padding: 15px;
-            border: 2px solid red;
-            background-color: #fff3cd; /* light yellow */
-            color: #8a0000; /* dark red text */
+            border: 3px dashed #b30000; /* red dashed border */
+            background-color: rgba(255,255,255,0.95); /* white card to be readable */
+            color: #002200; /* dark green text */
             font-weight: bold;
-            border-radius: 10px;
+            border-radius: 12px;
             width: 80%;
-            max-width: 600px;
+            max-width: 640px;
             margin-left: auto;
             margin-right: auto;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+        }
+
+        /* Small responsive tweak */
+        @media (max-width: 480px) {
+            .buttons a {
+                padding: 8px 14px;
+                margin: 6px;
+                font-size: 14px;
+            }
+
+            .warning {
+                width: 92%;
+                padding: 12px;
+            }
         }
     </style>
 </head>
@@ -117,7 +159,7 @@
         <div class="buttons">
             <a href="games.html" class="button">Games</a>
             <a href="tools.html" class="button">Tools</a>
-            <a href="good.html" class="button">Good</a>
+            <a href="good.html" class="button good">Good</a>
         </div>
 
         <div class="warning">
